@@ -188,7 +188,11 @@
 
 	//Allow iOs playing both external links and local files.
 	if ([url hasPrefix:@"file://"]) {
-		playerItem = [[AVPlayerItem alloc] initWithURL:[NSURL fileURLWithPath:[url substringFromIndex:7]]];
+		NSMutableDictionary * headers = [NSMutableDictionary dictionary];
+		[headers setObject:@"1" forKey:@"Icy-Meta"];
+		AVURLAsset * asset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:[url substringFromIndex:7]] options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
+		playerItem = [AVPlayerItem playerItemWithAsset:asset];
+		// playerItem = [[AVPlayerItem alloc] initWithURL:[NSURL fileURLWithPath:[url substringFromIndex:7]]];
 	} else {
 		playerItem = [[AVPlayerItem alloc] initWithURL:[NSURL URLWithString:url]];
 	}
