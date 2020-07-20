@@ -254,7 +254,7 @@
 	if ([keyPath isEqualToString:@"timedMetadata"]){
 		AVPlayerItem item = (AVPlayerItem)object;
 		AVMetadataItem meta = (AVMetadataItem)item.timedMetadata;
-		NSLog(meta);
+		NSLog(@"%@", meta);
 	}
 	if ([keyPath isEqualToString:@"status"]) {
 		AVPlayerItemStatus status = AVPlayerItemStatusUnknown;
