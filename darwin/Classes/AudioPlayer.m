@@ -192,6 +192,7 @@
 		[headers setObject:@"1" forKey:@"Icy-Meta"];
 		AVURLAsset * asset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:[url substringFromIndex:7]] options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
 		playerItem = [AVPlayerItem playerItemWithAsset:asset];
+		playerItem.addObserver(self, forKeyPath: @"timedMetadata" options:nil context:nil)
 		// playerItem = [[AVPlayerItem alloc] initWithURL:[NSURL fileURLWithPath:[url substringFromIndex:7]]];
 	} else {
 		playerItem = [[AVPlayerItem alloc] initWithURL:[NSURL URLWithString:url]];
@@ -250,7 +251,11 @@
 		ofObject:(id)object
 		change:(NSDictionary<NSString *,id> *)change
 		context:(void *)context {
-
+	if ([keyPath isEqualToString:@"timedMetadata"]){
+		AVPlayerItem item = (AVPlayerItem)object;
+		AVMetadataItem meta = (AVMetadataItem)item.timedMetadata;
+		NSLog(meta);
+	}
 	if ([keyPath isEqualToString:@"status"]) {
 		AVPlayerItemStatus status = AVPlayerItemStatusUnknown;
 		NSNumber *statusNumber = change[NSKeyValueChangeNewKey];
