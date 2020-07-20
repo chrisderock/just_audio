@@ -253,7 +253,7 @@
 		context:(void *)context {
 	if ([keyPath isEqualToString:@"timedMetadata"]){
 		AVPlayerItem item = (AVPlayerItem)object;
-		AVMetadataItem meta = (AVMetadataItem)item.timedMetadata;
+		AVMetadataItem meta = (AVMetadataItem)(item.timedMetadata);
 		NSLog(@"%@", meta);
 	}
 	if ([keyPath isEqualToString:@"status"]) {
