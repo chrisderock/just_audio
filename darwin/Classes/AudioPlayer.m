@@ -192,7 +192,8 @@
 		[headers setObject:@"1" forKey:@"Icy-Meta"];
 		AVURLAsset * asset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:[url substringFromIndex:7]] options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
 		playerItem = [AVPlayerItem playerItemWithAsset:asset];
-		playerItem.addObserver(self, forKeyPath: @"timedMetadata" options:nil context:nil)
+		// playerItem.addObserver(self, forKeyPath: @"timedMetadata" options:nil context:nil)
+		[playerItem addObserver: self forKeyPath:@"timedMetadata" options:NSKeyValueObservingOptionNew context:nil];
 		// playerItem = [[AVPlayerItem alloc] initWithURL:[NSURL fileURLWithPath:[url substringFromIndex:7]]];
 	} else {
 		playerItem = [[AVPlayerItem alloc] initWithURL:[NSURL URLWithString:url]];
