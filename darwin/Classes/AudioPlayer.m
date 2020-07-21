@@ -252,7 +252,7 @@
 		change:(NSDictionary<NSString *,id> *)change
 		context:(void *)context {
 	if ([keyPath isEqualToString:@"timedMetadata"]){
-		AVPlayerItem item = (AVPlayerItem)object;
+		AVPlayerItem *item = (AVPlayerItem*)object;
 		// AVMetadataItem meta = (AVMetadataItem)(item.timedMetadata);
 		NSLog(@"%@", item);
 	}
