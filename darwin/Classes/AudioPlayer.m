@@ -247,7 +247,11 @@
 	];
 	// We send result after the playerItem is ready in observeValueForKeyPath.
 }
-
+- (void)observeValue:(NSString*)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void*)context{
+	AVPlayerItem *item = (AVPlayerItem*)object;
+	// AVMetadataItem meta = (AVMetadataItem)(item.timedMetadata);
+	NSLog(@"%@", item);
+}
 - (void)observeValueForKeyPath:(NSString *)keyPath
 		ofObject:(id)object
 		change:(NSDictionary<NSString *,id> *)change
